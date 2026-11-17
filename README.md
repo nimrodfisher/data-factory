@@ -7,20 +7,36 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-3B82F6" alt="PRs welcome"></a>
 </p>
 
-**Software teams are running "software factories": agents build, an independent system verifies, humans set intent and approve.**
-**Data Factory brings that model to data.** One data person gets a data engineer, an analyst, a data scientist, a BI engineer and a quality inspector — and reviews a verdict instead of 40 queries.
+<h2 align="center">Your data team is one person.<br>Data Factory gives them a whole team.</h2>
 
-```
-/data-factory:run MRR dropped in August. Why — and was the price increase a mistake? Forecast to December and give me a dashboard.
-```
+<p align="center">
+  A <b>data engineer</b>, an <b>analyst</b>, a <b>data scientist</b> and a <b>BI engineer</b> do the work.<br>
+  A <b>quality inspector</b> checks every number. <b>You just approve.</b>
+</p>
 
-<p align="center"><img src="assets/how-it-works.gif" alt="A data team of one today vs. with Data Factory" width="90%"></p>
+<p align="center"><img src="assets/how-it-works.gif" alt="A data team of one today vs. with Data Factory" width="100%"></p>
 
-→ a spec you approve → models with tests → a findings memo → a causal estimate + forecast → a dashboard → **an inspection that catches what the builders missed** → a ship report with the answer.
+<p align="center">
+  <a href="#start-here"><b>▶ Try it in 5 minutes</b></a> &nbsp;·&nbsp;
+  <a href="examples/mrr-drop"><b>👀 See a real run</b></a> &nbsp;·&nbsp;
+  <a href="docs/use-cases.md"><b>💡 What can I ask it?</b></a>
+</p>
+
+## How it works, in plain words
+
+1. **You ask** in plain English → `/data-factory:run Why did MRR drop in August?`
+2. **It writes a spec** that pins down every word ("revenue", "active", "last month") → **you approve it**
+3. **Four AI specialists build** the tables, the analysis, the forecast and the dashboard
+4. **An inspector checks every number** against hidden tests and your finance figures → mistakes go back for rework
+5. **You get the answer + the proof** → **you decide** what ships. Nothing touches production without you.
+
+It's the **software factory** idea that engineering teams adopted in 2026 (agents build, an independent system verifies, humans set intent) — applied to data. [Why it works →](docs/concept.md)
+
+### It catches what people miss
+
+> In the [reference run](examples/mrr-drop), every visible check passed on the first build. The inspector's **hidden checks** still caught **1,132 duplicated invoices** (revenue overstated by 46%) and **3 internal test accounts** that made the August drop look 76% bigger and blamed the wrong customers. One rework loop later, every number matched finance — to the dollar.
 
 <p align="center"><img src="assets/dashboard.png" alt="Dashboard produced by the reference run" width="90%"></p>
-
-> In the [reference run](examples/mrr-drop), every visible check passed on the first build. The inspector's **sealed holdouts** still caught **1,132 duplicated invoices** (revenue overstated by 46%) and **3 internal QA accounts** that made the August drop look 76% bigger and blamed the wrong segment. One rework loop later, every number reconciled to finance to the dollar.
 
 ---
 
