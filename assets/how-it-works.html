@@ -1,0 +1,165 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#06080e}
+svg{display:block}
+text{font-family:Inter,"Inter Display",sans-serif;fill:#cbd5e1}
+.code{font-family:"DejaVu Sans Mono",monospace;font-weight:700;font-size:13px}
+.lbl{font-size:13px;fill:#94a3b8}
+.sub{font-size:14px;fill:#8b93b8}
+</style></head><body>
+<svg id="s" width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#334155"/></marker>
+</defs>
+<rect width="1200" height="900" fill="#06080e"/>
+<g id="edges"></g><g id="dots"></g><g id="nodes"></g><g id="ui"></g>
+</svg>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const S=document.getElementById('s');
+const mk=(t,a,p,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;(p||S).appendChild(e);return e};
+const G={e:document.getElementById('edges'),d:document.getElementById('dots'),n:document.getElementById('nodes'),u:document.getElementById('ui')};
+const C={blue:'#3B82F6',purple:'#A78BFA',red:'#ef4444',green:'#22c55e',amber:'#f59e0b',orange:'#f97316',dim:'#1e293b',gray:'#475569'};
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const prog=(t,a,b)=>clamp((t-a)/(b-a));
+
+/* ---------- titles ---------- */
+mk('text',{x:300,y:52,'text-anchor':'middle','font-size':26,'font-weight':700,fill:C.orange},G.u,'A data team of one, today');
+mk('text',{x:300,y:78,'text-anchor':'middle',class:'sub'},G.u,'every request, every craft, one queue');
+mk('text',{x:920,y:52,'text-anchor':'middle','font-size':26,'font-weight':700,fill:'url(#tg)'},G.u,'With Data Factory');
+mk('text',{x:920,y:78,'text-anchor':'middle',class:'sub'},G.u,'you set intent & approve · agents build · inspector verifies');
+mk('line',{x1:600,y1:30,x2:600,y2:780,stroke:'#1e293b','stroke-dasharray':'4 6'},G.u);
+
+/* ---------- nodes ---------- */
+const N={};
+function node(id,x,y,code,label,color,opt={}){
+  const g=mk('g',{},G.n);
+  const halo=mk('circle',{cx:x,cy:y,r:30,fill:color,opacity:0},g);
+  const c=mk('circle',{cx:x,cy:y,r:opt.r||24,fill:'#0b1020',stroke:color,'stroke-width':2,opacity:.45},g);
+  const t=mk('text',{x,y:y+5,'text-anchor':'middle',class:'code',fill:color,opacity:.6},g,code);
+  const lx=opt.side?x+36:x, ly=opt.side?y+5:y+(opt.r||24)+18;
+  const l=mk('text',{x:lx,y:ly,'text-anchor':opt.side?'start':'middle',class:'lbl'},g,label);
+  N[id]={x,y,c,t,l,halo,color,g};
+}
+function state(id,s,color){ // s: 0 idle, 1 active, 2 done
+  const n=N[id]; const col=color||n.color;
+  n.c.setAttribute('stroke',col); n.t.setAttribute('fill',col);
+  n.c.setAttribute('opacity',s?1:.45); n.t.setAttribute('opacity',s?1:.6);
+  n.c.setAttribute('fill',s===1?col+'33':'#0b1020'); n.halo.setAttribute('fill',col);
+  n.halo.setAttribute('opacity',s===1?.18:0); n.l.setAttribute('fill',s?'#e2e8f0':'#94a3b8');
+}
+// left
+node('ceo',180,140,'CEO','',C.orange); node('fin',300,140,'FIN','',C.orange); node('pm',420,140,'PM','',C.orange);
+node('inbox',300,240,'IN','request queue',C.orange); node('you',300,340,'YOU','you, context-switching',C.orange,{side:1});
+node('t1',300,430,'SQL','build the pipeline',C.gray,{side:1,r:20}); node('t2',300,510,'?','analyse the drop',C.gray,{side:1,r:20});
+node('t3',300,590,'f(x)','forecast',C.gray,{side:1,r:20}); node('t4',300,670,'BI','dashboard',C.gray,{side:1,r:20});
+// right
+node('req',920,140,'ASK','request, plain words',C.blue);
+node('spec',920,230,'SPEC','spec + definitions',C.blue);
+node('ctx',1110,230,'CTX','context & lessons',C.purple);
+node('seal',740,320,'H','sealed holdouts',C.red);
+node('de',920,320,'DE','data-engineer',C.blue);
+node('da',830,410,'DA','data-analyst',C.blue); node('ds',1010,410,'DS','data-scientist',C.blue);
+node('bi',920,500,'BI','bi-engineer',C.blue);
+node('qa',920,590,'QA','quality-inspector',C.red);
+node('ship',920,680,'SHIP','answer + proof',C.green);
+
+/* ---------- edges ---------- */
+const E={};
+function edge(id,d,opt={}){const p=mk('path',{d,fill:'none',stroke:C.dim,'stroke-width':2,'stroke-dasharray':opt.dash||'', 'marker-end':opt.arrow?'url(#arr)':''},G.e);E[id]={p,len:p.getTotalLength()}}
+const V=(a,b,ra=24,rb=24)=>`M${N[a].x},${N[a].y+ra} L${N[b].x},${N[b].y-rb}`;
+const Q=(a,b,ra=24,rb=24)=>{const A=N[a],B=N[b];return `M${A.x},${A.y+ra} C${A.x},${(A.y+B.y)/2} ${B.x},${(A.y+B.y)/2} ${B.x},${B.y-rb}`};
+edge('l1',Q('ceo','inbox'));edge('l2',V('fin','inbox'));edge('l3',Q('pm','inbox'));edge('l4',V('inbox','you'));
+edge('l5',V('you','t1',24,20));edge('l6',V('t1','t2',20,20));edge('l7',V('t2','t3',20,20));edge('l8',V('t3','t4',20,20));
+edge('r1',V('req','spec'));edge('rc',`M1086,230 L944,230`,{dash:'5 5'});
+edge('rs',`M900,244 C860,280 790,300 764,316`);edge('r2',V('spec','de'));
+edge('r3',Q('de','da'));edge('r4',Q('de','ds'));edge('r5',Q('da','bi'));edge('r6',Q('ds','bi'));edge('r7',V('bi','qa'));
+edge('rh',`M740,344 L740,590 L896,590`,{dash:'5 5'});
+edge('rw',`M944,590 C1090,590 1090,320 944,320`,{dash:'6 5'});
+edge('r8',V('qa','ship'));
+edge('rl',`M938,662 C1150,640 1165,300 1112,256`,{dash:'5 5'});
+
+/* ---------- ui bits ---------- */
+const badge=mk('g',{},G.u); mk('rect',{x:322,y:222,width:44,height:22,rx:11,fill:C.orange},badge); const bt=mk('text',{x:344,y:238,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#06080e'},badge,'+23');
+const week=mk('text',{x:200,y:435,'text-anchor':'end','font-size':14,'font-weight':700,fill:C.orange},G.u,'');
+const leftOut=mk('text',{x:300,y:745,'text-anchor':'middle','font-size':15,fill:'#64748b'},G.u,'answer: not yet · numbers unchecked');
+function pill(x,y,txt,col,anchor){const g=mk('g',{opacity:0},G.u);const w=txt.length*7.2+22;const x0=anchor==='end'?x-w:x;
+  mk('rect',{x:x0,y:y-13,width:w,height:26,rx:13,fill:col+'22',stroke:col},g);mk('text',{x:x0+w/2,y:y+5,'text-anchor':'middle','font-size':12.5,'font-weight':600,fill:col},g,txt);return g}
+const gate1=pill(884,203,'GATE 1 · you approve ✓',C.amber,'end');
+const gate2=pill(958,680,'GATE 2 · you merge ✓',C.amber,'start');
+const rwLabel=mk('text',{x:1090,y:460,'text-anchor':'middle','font-size':12,'font-weight':700,fill:C.red,opacity:0},G.u,'REWORK');
+const learnLbl=mk('text',{x:1150,y:470,'text-anchor':'middle','font-size':12,'font-weight':700,fill:C.purple,opacity:0,transform:'rotate(90 1150 470)'},G.u,'LEARN');
+// callout
+const call=mk('g',{opacity:0},G.u); const cr=mk('rect',{x:606,y:618,width:246,height:96,rx:10,fill:'#0b1020',stroke:C.red},call);
+const c1=mk('text',{x:620,y:642,'font-size':13,'font-weight':700,fill:C.red},call,''); const c2=mk('text',{x:620,y:664,'font-size':12.5,fill:'#e2e8f0'},call,'');
+const c3=mk('text',{x:620,y:684,'font-size':12.5,fill:'#e2e8f0'},call,''); const c4=mk('text',{x:620,y:704,'font-size':12.5,fill:'#e2e8f0'},call,'');
+const rightOut=mk('text',{x:920,y:742,'text-anchor':'middle','font-size':15,'font-weight':600,fill:C.green,opacity:0},G.u,'hours · every number reconciled to finance');
+// footer
+const foot=mk('g',{opacity:0},G.u);
+mk('rect',{x:0,y:790,width:1200,height:110,fill:'#0b1020'},foot);
+mk('text',{x:600,y:835,'text-anchor':'middle','font-size':28,'font-weight':700,fill:'url(#tg)'},foot,'One data person. A full AI data team.');
+mk('text',{x:600,y:870,'text-anchor':'middle','font-size':17,fill:'#94a3b8','font-family':'DejaVu Sans Mono,monospace'},foot,'github.com/nimrodfisher/data-factory');
+
+/* ---------- dots ---------- */
+const dots=[];for(let i=0;i<8;i++){dots.push(mk('circle',{r:6,fill:'#fff',filter:'url(#glow)',opacity:0},G.d))}
+const flows=[ // edge, start, end, color, dotIndex
+ ['l1',.3,1.3,C.orange,0],['l2',.6,1.5,C.orange,1],['l3',.9,1.8,C.orange,2],['l4',1.6,2.6,C.orange,3],
+ ['l5',2.6,4.6,C.orange,4],['l6',4.6,7.8,C.orange,4],['l7',7.8,11.6,C.orange,4],
+ ['r1',.5,1.3,C.blue,5],['r2',2.8,3.4,C.blue,5],['rs',2.1,2.7,C.red,6],
+ ['r3',3.6,4.3,C.blue,5],['r4',3.6,4.3,C.blue,6],['r5',4.6,5.2,C.blue,5],['r6',4.6,5.2,C.blue,6],['r7',5.4,5.9,C.blue,5],
+ ['rh',5.4,6.1,C.red,7],
+ ['rw',7.2,8.0,C.red,5],
+ ['r3',8.0,8.35,C.blue,5],['r4',8.0,8.35,C.blue,6],['r5',8.4,8.75,C.blue,5],['r6',8.4,8.75,C.blue,6],['r7',8.8,9.1,C.blue,5],
+ ['r8',9.9,10.5,C.green,5],['rl',10.9,11.7,C.purple,6],['rc',11.7,12.1,C.purple,6],
+];
+
+function render(t){
+  // edges
+  for(const k in E){E[k].p.setAttribute('stroke',C.dim);E[k].p.setAttribute('stroke-opacity',1)}
+  dots.forEach(d=>d.setAttribute('opacity',0));
+  for(const [e,a,b,col,di] of flows){
+    if(t>=a){E[e].p.setAttribute('stroke',col);E[e].p.setAttribute('stroke-opacity',t>=b?.55:.9)}
+    if(t>=a&&t<b){const f=ease(prog(t,a,b));const pt=E[e].p.getPointAtLength(f*E[e].len);
+      dots[di].setAttribute('cx',pt.x);dots[di].setAttribute('cy',pt.y);dots[di].setAttribute('fill',col);dots[di].setAttribute('opacity',1)}
+  }
+  // left states
+  ['ceo','fin','pm'].forEach((id,i)=>state(id,t>.3+.3*i?2:0));
+  state('inbox',t>1.3?1:0); state('you',t>2.6?1:0);
+  state('t1',t>4.6?2:(t>2.6?0:0),C.orange); state('t2',t>7.8?2:0,C.orange); state('t3',t>11.6?1:0,C.orange); state('t4',0);
+  if(t>4.4&&t<4.8)state('t1',1,C.orange); if(t>7.6&&t<8)state('t2',1,C.orange);
+  bt.textContent='+'+(23+Math.floor(t/2.2));
+  week.textContent=t<2.6?'':t<4.6?'week 1':t<7.8?'week 2':'week 3';
+  week.setAttribute('y',t<4.6?435:t<7.8?515:595);
+  // right states
+  state('req',t>.5?2:0);
+  state('spec',t>1.3?(t<2.8?1:2):0);
+  gate1.setAttribute('opacity',prog(t,1.5,1.9));
+  state('seal',t>2.7?2:0,C.red);
+  state('ctx',t>11.7?1:(t>0?2:0)); if(t>12.1)state('ctx',2);
+  state('de',t>3.4?(t<3.7||(t>8&&t<8.1)?1:2):0);
+  if(t>7.95&&t<8.05)state('de',1,C.red);
+  state('da',t>4.3?(t<4.7?1:2):0); state('ds',t>4.3?(t<4.7?1:2):0);
+  state('bi',t>5.2?(t<5.5?1:2):0);
+  // inspector
+  if(t<5.9)state('qa',0,C.red);
+  else if(t<7.2)state('qa',1,C.red);
+  else if(t<9.1)state('qa',2,C.red);
+  else if(t<9.9)state('qa',1,C.green);
+  else state('qa',2,C.green);
+  rwLabel.setAttribute('opacity',t>7.2&&t<9.1?1:0);
+  // callout
+  if(t>6.1&&t<9.1){call.setAttribute('opacity',prog(t,6.1,6.4));cr.setAttribute('stroke',C.red);c1.setAttribute('fill',C.red);
+    c1.textContent='REWORK · sealed holdouts caught:';c2.textContent='• 1,132 duplicated invoices (+46%)';c3.textContent='• 3 QA accounts counted as MRR';c4.textContent='• visible checks had all passed';}
+  else if(t>=9.1){call.setAttribute('opacity',prog(t,9.1,9.4));cr.setAttribute('stroke',C.green);c1.setAttribute('fill',C.green);
+    c1.textContent='PASS · inspection loop 2';c2.textContent='• 7/7 sealed holdouts ✓';c3.textContent='• MRR = board deck, to the dollar';c4.textContent='• revenue = finance close ✓';}
+  else call.setAttribute('opacity',0);
+  state('ship',t>10.5?2:(t>9.9?0:0),C.green); if(t>10.4&&t<10.9)state('ship',1,C.green);
+  gate2.setAttribute('opacity',prog(t,10.5,10.9));
+  rightOut.setAttribute('opacity',prog(t,10.6,11));
+  learnLbl.setAttribute('opacity',t>10.9?1:0);
+  leftOut.textContent=t<11.8?'answer: not yet · numbers unchecked':'week 3+ · still waiting · numbers unchecked';
+  foot.setAttribute('opacity',prog(t,12.3,12.9));
+}
+window.render=render; render(0);
+</script></body></html>

@@ -14,6 +14,8 @@
 /data-factory:run MRR dropped in August. Why — and was the price increase a mistake? Forecast to December and give me a dashboard.
 ```
 
+<p align="center"><img src="assets/how-it-works.gif" alt="A data team of one today vs. with Data Factory" width="90%"></p>
+
 → a spec you approve → models with tests → a findings memo → a causal estimate + forecast → a dashboard → **an inspection that catches what the builders missed** → a ship report with the answer.
 
 <p align="center"><img src="assets/dashboard.png" alt="Dashboard produced by the reference run" width="90%"></p>
