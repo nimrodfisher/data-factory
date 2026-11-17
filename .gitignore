@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.duckdb
+*.duckdb.wal
+examples/*/outputs/
+demo/.data-factory/runs/*
+!demo/.data-factory/runs/.gitkeep
+demo/models/
+demo/analyses/
+demo/notebooks/
+demo/dashboards/

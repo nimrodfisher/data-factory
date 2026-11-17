@@ -1,0 +1,41 @@
+# Data Factory configuration. /data-factory:init fills this in — edit freely.
+version: 1
+
+# How much the factory does without asking you.
+#   supervised  – you approve the spec and every handoff
+#   gated       – you approve the spec and anything that ships (default)
+#   lights-out  – recurring/trusted requests run end to end; still never touches prod
+autonomy: gated
+max_rework_loops: 2
+
+stack:
+  warehouse: duckdb          # snowflake | bigquery | databricks | redshift | postgres | duckdb | other
+  transform: none            # dbt | sqlmesh | none (plain SQL files)
+  orchestrator: none         # airflow | dagster | prefect | dbt-cloud | github-actions | cron | none
+  bi: html                   # looker | tableau | powerbi | metabase | superset | lightdash | hex | streamlit | html
+  ml: python                 # python | none
+  # How agents execute SQL against DEV. Any shell command that takes SQL as its last argument,
+  # or "mcp:<server-name>" to use a connected database MCP tool, or "none" to only write SQL.
+  query_runner: "duckdb dev.duckdb -c"
+
+environments:
+  dev: dev                   # schema / target / dataset agents may write to
+  prod: prod                 # never written by agents — shipping means a PR
+
+paths:                       # where deliverables go in YOUR repo
+  models: models/
+  analyses: analyses/
+  notebooks: notebooks/
+  dashboards: dashboards/
+
+conventions:
+  sql: lowercase keywords, leading-comma free, CTEs over subqueries, explicit column lists in marts
+  naming: stg_<source>__<entity>, int_<entity>__<verb>, fct_<event>, dim_<entity>
+  timezone: UTC
+
+stations:                    # on | off — or replace with your own agent name
+  data-engineer: on
+  data-analyst: on
+  data-scientist: on
+  bi-engineer: on
+  quality-inspector: on      # keep this on: it is what makes autonomy safe

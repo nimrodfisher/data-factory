@@ -1,0 +1,28 @@
+# Copy to .github/ISSUE_TEMPLATE/data-request.yml in your data repo.
+# Stakeholders open a "Data request" issue; the factory replies with a spec for approval.
+name: 📊 Data request
+description: Ask the data team a question, or request a dashboard, model or forecast.
+labels: ["data-request"]
+body:
+  - type: textarea
+    id: ask
+    attributes:
+      label: What do you need?
+      description: Plain words. e.g. "Why did signups drop last week?" or "A churn dashboard for CS".
+    validations: { required: true }
+  - type: textarea
+    id: decision
+    attributes:
+      label: What decision will this help you make?
+      description: e.g. "Whether to extend the promo", "Which accounts CS calls first".
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options: [Question / investigation, Dashboard, Forecast, Experiment readout, New data source, Not sure]
+  - type: input
+    id: when
+    attributes:
+      label: Needed by
+      placeholder: e.g. Friday board meeting

@@ -1,0 +1,21 @@
+{
+  "name": "data-factory",
+  "owner": {
+    "name": "Nimrod Fisher",
+    "url": "https://github.com/nimrodfisher"
+  },
+  "metadata": {
+    "description": "Run a full AI data team — data engineer, analyst, data scientist, BI engineer and QA inspector — as one person.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "data-factory",
+      "source": "./plugins/data-factory",
+      "description": "The software-factory model for data: specs in, verified data products out. 5 specialist agents, holdout checks, human gates, any warehouse.",
+      "version": "0.1.0",
+      "category": "data",
+      "keywords": ["data-engineering", "analytics", "data-science", "bi", "dbt", "agents", "software-factory"]
+    }
+  ]
+}

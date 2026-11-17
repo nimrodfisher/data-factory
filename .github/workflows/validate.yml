@@ -1,0 +1,18 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install duckdb pandas numpy
+      - name: Plugin structure
+        run: python tests/validate_repo.py
+      - name: Safety interlock
+        run: python tests/test_sql_guard.py
+      - name: Demo + reference run
+        run: |
+          python demo/generate_data.py
+          python examples/mrr-drop/build.py

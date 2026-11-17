@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "data-factory": {
+      "source": { "source": "github", "repo": "nimrodfisher/data-factory" }
+    }
+  },
+  "enabledPlugins": {
+    "data-factory@data-factory": true
+  }
+}

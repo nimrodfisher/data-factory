@@ -1,0 +1,34 @@
+# Data Factory configuration for the demo (Fieldnote, a fictional B2B SaaS).
+version: 1
+autonomy: gated
+max_rework_loops: 2
+
+stack:
+  warehouse: duckdb
+  transform: none            # plain SQL files, built into the dev schema
+  orchestrator: none
+  bi: html
+  ml: python
+  query_runner: "python3 q.py"   # python3 q.py "select ..."  or  python3 q.py -f file.sql
+
+environments:
+  dev: dev                   # agents build here (schema dev in saas.duckdb)
+  prod: raw                  # source data — read-only for agents
+
+paths:
+  models: models/
+  analyses: analyses/
+  notebooks: notebooks/
+  dashboards: dashboards/
+
+conventions:
+  sql: lowercase keywords, CTEs over subqueries, explicit column lists in marts
+  naming: stg_<source>__<entity>, int_<entity>__<verb>, fct_<event>, dim_<entity>
+  timezone: UTC
+
+stations:
+  data-engineer: on
+  data-analyst: on
+  data-scientist: on
+  bi-engineer: on
+  quality-inspector: on

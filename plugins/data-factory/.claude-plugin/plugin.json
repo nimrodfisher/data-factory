@@ -1,0 +1,13 @@
+{
+  "name": "data-factory",
+  "version": "0.1.0",
+  "description": "One data person, a full AI data team. Specs in, verified data products out.",
+  "author": {
+    "name": "Nimrod Fisher",
+    "url": "https://github.com/nimrodfisher"
+  },
+  "homepage": "https://github.com/nimrodfisher/data-factory",
+  "repository": "https://github.com/nimrodfisher/data-factory",
+  "license": "MIT",
+  "keywords": ["data-engineering", "analytics", "data-science", "bi", "dbt", "agents", "software-factory"]
+}

@@ -1,0 +1,58 @@
+# Copy to .github/workflows/data-factory.yml in your data repo.
+# Flow: stakeholder opens a "Data request" issue → the factory posts a SPEC as a comment (Gate 1)
+#       → data lead replies "@claude approved, run it" → the factory builds, inspects and opens a PR with the ship report (Gate 2 = PR review).
+# Secrets: ANTHROPIC_API_KEY + your warehouse credentials for a DEV-ONLY role (never prod write access).
+name: data-factory
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  spec:
+    # New data request → write the spec and ask for approval
+    if: github.event_name == 'issues' && github.event.label.name == 'data-request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          plugin_marketplaces: |
+            https://github.com/nimrodfisher/data-factory.git
+          plugins: |
+            data-factory@data-factory
+          prompt: |
+            /data-factory:spec Issue #${{ github.event.issue.number }}: ${{ github.event.issue.title }}
+            ${{ github.event.issue.body }}
+            Post the 6-line spec summary and any blocking questions as a comment on this issue.
+            End the comment with: "Reply `@claude approved, run it` to start the factory."
+
+  run:
+    # Data lead approves in a comment → full factory run, results as a PR
+    if: github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')
+    runs-on: ubuntu-latest
+    env:
+      # Example for Snowflake — use your warehouse's variables. DEV-ONLY role.
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLE: DATA_FACTORY_DEV
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          plugin_marketplaces: |
+            https://github.com/nimrodfisher/data-factory.git
+          plugins: |
+            data-factory@data-factory
+          # No prompt: Claude responds to the @claude comment in context of the issue.
+          # Tell it in the comment what to do, e.g. "@claude approved, run it".

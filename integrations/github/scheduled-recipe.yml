@@ -1,0 +1,34 @@
+# Copy to .github/workflows/weekly-kpi.yml in your data repo.
+# Runs a saved spec on a schedule (lights-out) and opens a PR with the results + ship report.
+name: weekly-kpi-review
+on:
+  schedule:
+    - cron: "17 5 * * 1"     # Mondays 05:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}     # DEV-ONLY role
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLE: DATA_FACTORY_DEV
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          plugin_marketplaces: |
+            https://github.com/nimrodfisher/data-factory.git
+          plugins: |
+            data-factory@data-factory
+          prompt: |
+            /data-factory:run weekly-kpi-review
+            When done, commit the deliverables on a new branch `factory/weekly-kpi-<date>` and open a PR
+            whose description is the ship report. If the inspector's verdict is not PASS, say so in the PR title.
