@@ -96,11 +96,12 @@ const c1=mk('text',{x:622,y:674,'font-size':15.5,'font-weight':700,fill:C.red},c
 const c3=mk('text',{x:622,y:720,'font-size':14.5,'font-weight':600,fill:'#f1f5f9'},call,''); const c4=mk('text',{x:622,y:742,'font-size':14.5,'font-weight':600,fill:'#f1f5f9'},call,'');
 const rightOut=mk('text',{x:1000,y:752,'text-anchor':'middle','font-size':18,'font-weight':800,fill:C.green,opacity:0},G.u,'hours · every number verified');
 // footer
-const foot=mk('g',{opacity:0},G.u);
+const foot=mk('g',{},G.u);
 mk('rect',{x:0,y:790,width:1200,height:110,fill:'#0b1020'},foot);
-mk('text',{x:600,y:838,'text-anchor':'middle','font-size':34,'font-weight':800,fill:'url(#tg)'},foot,'One data person. A full AI data team.');
-mk('text',{x:600,y:876,'text-anchor':'middle','font-size':20,'font-weight':700,fill:'#e2e8f0','font-family':'DejaVu Sans Mono,monospace'},foot,'github.com/nimrodfisher/data-factory');
-
+mk('line',{x1:0,y1:790,x2:1200,y2:790,stroke:'url(#tg)','stroke-width':3},foot);
+const tag=mk('text',{x:600,y:830,'text-anchor':'middle','font-size':34,'font-weight':800,fill:'url(#tg)',opacity:0},foot,'One data person. A full AI data team.');
+const link=mk('g',{},foot);
+mk('text',{x:600,y:858,'text-anchor':'middle','font-size':26,'font-weight':700,fill:'#ffffff','font-family':'DejaVu Sans Mono,monospace'},link,'github.com/nimrodfisher/data-factory');
 /* ---------- dots ---------- */
 const dots=[];for(let i=0;i<8;i++){dots.push(mk('circle',{r:6,fill:'#fff',filter:'url(#glow)',opacity:0},G.d))}
 const flows=[ // edge, start, end, color, dotIndex
@@ -159,7 +160,7 @@ function render(t){
   rightOut.setAttribute('opacity',prog(t,10.6,11));
   learnLbl.setAttribute('opacity',t>10.9?1:0);
   leftOut.textContent=t<11.8?'no answer yet · unchecked':'week 3+ · still waiting';
-  foot.setAttribute('opacity',prog(t,12.3,12.9));
+  const k=prog(t,12.3,12.9); tag.setAttribute('opacity',k); link.setAttribute('transform',`translate(0,${-6+22*k})`);
 }
 window.render=render; render(0);
 </script></body></html>
