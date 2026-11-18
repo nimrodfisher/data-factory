@@ -1,3 +1,7 @@
+---
+title: "Use cases — what a lean data team runs through an AI data team"
+description: "Practical playbooks: metric investigations, weekly KPI reviews, dashboards, new data sources, A/B tests and forecasts with Data Factory's AI agents."
+---
 # Use cases — what a lean data team actually runs through the factory
 
 Each one: **who asks → what you type → what you get → how much you're involved.**
@@ -18,7 +22,7 @@ or use the recipe: `/data-factory:run metric-alert-investigation` (it asks for t
 
 ### 2. Weekly KPI review — on autopilot
 **Who asks:** nobody — it just arrives every Monday.
-**You type (once):** fill the KPI list in `.data-factory/specs/weekly-kpi-review.md`, then schedule it ([GitHub Actions template](../integrations/github/scheduled-recipe.yml)).
+**You type (once):** fill the KPI list in `.data-factory/specs/weekly-kpi-review.md`, then schedule it ([GitHub Actions template](https://github.com/nimrodfisher/data-factory/blob/main/integrations/github/scheduled-recipe.yml)).
 **You get:** a PR every Monday with the KPI table (vs last week and 4-week average), a short "why" note for anything outside its normal range, and a refreshed dashboard.
 **Your involvement:** skim the PR. The recipe runs `lights-out` — it's safe because it only reads tested marts and reconciles to your truth anchors.
 **Replaces:** the Monday-morning spreadsheet ritual.

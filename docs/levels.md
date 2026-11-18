@@ -1,3 +1,7 @@
+---
+title: "The 6 levels of the AI data factory"
+description: "A maturity model for AI in data teams, from hand-written SQL to a lights-out data factory."
+---
 # The 6 levels of the Data Factory
 
 Where is your data team today? Inspired by the "levels of AI adoption" discussion around dark software factories.

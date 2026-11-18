@@ -1,3 +1,7 @@
+---
+title: "Where your team talks to the AI data team — Claude Code, GitHub, Slack, schedules"
+description: "Set up Data Factory for stakeholders: GitHub issue requests, Slack, scheduled runs and Claude Code for the data lead."
+---
 # Where your team talks to the factory
 
 The factory lives in **your data repo** (dbt project or SQL repo) — that's the factory floor. People reach it from four places.
@@ -22,12 +26,12 @@ cd your-data-repo && claude
 VS Code and JetBrains work the same way through the Claude Code extension.
 
 ## 2. Make the plugin part of the repo (do this once)
-Copy [`integrations/claude/settings.json`](../integrations/claude/settings.json) to `.claude/settings.json` in your data repo and commit it. Anyone who opens the repo with Claude Code — including cloud sessions on the web or phone — is offered the Data Factory plugin automatically, with your `.data-factory/` context already there.
+Copy [`integrations/claude/settings.json`](https://github.com/nimrodfisher/data-factory/blob/main/integrations/claude/settings.json) to `.claude/settings.json` in your data repo and commit it. Anyone who opens the repo with Claude Code — including cloud sessions on the web or phone — is offered the Data Factory plugin automatically, with your `.data-factory/` context already there.
 
 ## 3. GitHub — the request desk for stakeholders
 Two files:
-- [`integrations/github/data-request.yml`](../integrations/github/data-request.yml) → `.github/ISSUE_TEMPLATE/data-request.yml`
-- [`integrations/github/data-factory.yml`](../integrations/github/data-factory.yml) → `.github/workflows/data-factory.yml`
+- [`integrations/github/data-request.yml`](https://github.com/nimrodfisher/data-factory/blob/main/integrations/github/data-request.yml) → `.github/ISSUE_TEMPLATE/data-request.yml`
+- [`integrations/github/data-factory.yml`](https://github.com/nimrodfisher/data-factory/blob/main/integrations/github/data-factory.yml) → `.github/workflows/data-factory.yml`
 
 Then add repo secrets: `ANTHROPIC_API_KEY` and your warehouse credentials **for a dev-only role**. Install the [Claude GitHub app](https://github.com/apps/claude) on the repo.
 
@@ -50,7 +54,7 @@ With a Claude Team or Enterprise plan, Claude can join Slack (Claude Tag) and ro
 Availability and setup depend on your plan — see [Claude Code in Slack](https://code.claude.com/docs/en/slack).
 
 ## 5. Scheduled — the factory works while you sleep
-Copy [`integrations/github/scheduled-recipe.yml`](../integrations/github/scheduled-recipe.yml) → `.github/workflows/weekly-kpi.yml`. It runs `/data-factory:run weekly-kpi-review` every Monday and opens a PR with the results. Duplicate it for `monthly-forecast` or any saved spec.
+Copy [`integrations/github/scheduled-recipe.yml`](https://github.com/nimrodfisher/data-factory/blob/main/integrations/github/scheduled-recipe.yml) → `.github/workflows/weekly-kpi.yml`. It runs `/data-factory:run weekly-kpi-review` every Monday and opens a PR with the results. Duplicate it for `monthly-forecast` or any saved spec.
 
 Locally, without GitHub: `claude -p "/data-factory:run weekly-kpi-review"` from cron does the same.
 

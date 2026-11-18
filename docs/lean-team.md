@@ -1,3 +1,7 @@
+---
+title: "Running a lean data team with AI agents"
+description: "How one or two data people run a full AI data team: roles, setup, weekly rhythm and a scorecard."
+---
 # Running a lean data team with the factory
 
 **The model:** 1–2 data people run the factory; the factory does the station work; stakeholders send requests in and get verified answers out.
@@ -33,10 +37,10 @@ Stakeholders ──requests──► Factory (5 agents) ──PRs, memos, dashbo
 - Route every incoming request through `/data-factory:spec` first, even ones you build by hand. You'll see the value of definitions immediately.
 - Run 3–5 real requests end to end with `autonomy: gated`.
 - After each run, read `lessons.md` — it's where the factory gets smarter.
-- Commit `.claude/settings.json` ([template](../integrations/claude/settings.json)) so anyone opening the repo gets the plugin.
+- Commit `.claude/settings.json` ([template](https://github.com/nimrodfisher/data-factory/blob/main/integrations/claude/settings.json)) so anyone opening the repo gets the plugin.
 
 ### Month 1
-- Put the weekly KPI review on a schedule ([template](../integrations/github/scheduled-recipe.yml)).
+- Put the weekly KPI review on a schedule ([template](https://github.com/nimrodfisher/data-factory/blob/main/integrations/github/scheduled-recipe.yml)).
 - Open the request door: GitHub issue form or Slack ([how](interfaces.md)).
 - Move recurring requests that keep passing inspection to `lights-out`.
 - Save every request that repeats as a spec in `.data-factory/specs/`.

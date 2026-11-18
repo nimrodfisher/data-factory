@@ -1,0 +1,18 @@
+title: Data Factory — the open-source AI data team
+description: AI agents for data engineering, analytics, data science and BI. One data person runs a full AI data team; a quality inspector agent verifies every number.
+url: https://nimrodfisher.github.io
+baseurl: /data-factory
+author: Nimrod Fisher
+twitter:
+  username: FisherNimrod
+logo: /assets/icon.png
+image: /assets/social-preview.png
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-optional-front-matter
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false

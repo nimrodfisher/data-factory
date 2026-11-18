@@ -1,0 +1,145 @@
+---
+layout: null
+sitemap: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Factory — Open-Source AI Data Team | AI Agents for Data Engineering, Analytics & BI</title>
+<meta name="description" content="Data Factory is an open-source AI data team for Claude Code: an AI data engineer, data analyst, data scientist and BI engineer, plus a quality inspector agent that verifies every number. One data person runs the whole team.">
+<meta name="keywords" content="AI data team, AI agents for data, AI data analyst, AI data engineer, agentic data engineering, data factory, software factory, Claude Code plugin, dbt AI, AI analytics, data science agents, BI automation">
+<meta name="author" content="Nimrod Fisher">
+<link rel="canonical" href="https://nimrodfisher.github.io/data-factory/">
+<link rel="icon" href="assets/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Factory — the open-source AI data team">
+<meta property="og:description" content="AI agents for data engineering, analytics, data science and BI. One data person, a full AI data team, every number verified.">
+<meta property="og:url" content="https://nimrodfisher.github.io/data-factory/">
+<meta property="og:image" content="https://nimrodfisher.github.io/data-factory/assets/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@FisherNimrod">
+<meta name="twitter:title" content="Data Factory — the open-source AI data team">
+<meta name="twitter:description" content="AI agents for data engineering, analytics, data science and BI. One data person, every number verified.">
+<meta name="twitter:image" content="https://nimrodfisher.github.io/data-factory/assets/social-preview.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Data Factory",
+      "alternateName": ["data-factory", "AI Data Factory"],
+      "description": "Open-source AI data team for Claude Code: AI agents for data engineering, analytics, data science and BI, with a quality inspector agent that verifies every number.",
+      "codeRepository": "https://github.com/nimrodfisher/data-factory",
+      "url": "https://nimrodfisher.github.io/data-factory/",
+      "license": "https://opensource.org/licenses/MIT",
+      "programmingLanguage": ["SQL", "Python", "Markdown"],
+      "keywords": "AI data team, AI agents, data engineering, analytics, data science, business intelligence, dbt, Claude Code, software factory",
+      "author": {"@type": "Person", "name": "Nimrod Fisher", "url": "https://github.com/nimrodfisher"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is an AI data factory?",
+         "acceptedAnswer": {"@type": "Answer", "text": "A way of running data work like a software factory: specialised AI agents build, an independent agent verifies, and humans only set intent and approve. Data Factory is an open-source implementation for data teams."}},
+        {"@type": "Question", "name": "Is Data Factory related to Azure Data Factory?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. Azure Data Factory is Microsoft's data-integration (ETL) service. Data Factory is an open-source AI agent team for data work that runs on top of the warehouse and tools you already use."}},
+        {"@type": "Question", "name": "Can AI agents replace a data team?",
+         "acceptedAnswer": {"@type": "Answer", "text": "AI agents can do most of the building: SQL, dbt models, analyses, forecasts and dashboards. Intent, definitions and accountability stay with a human data lead, and Data Factory makes the agents prove their numbers with hidden checks."}},
+        {"@type": "Question", "name": "Which data tools does Data Factory work with?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Snowflake, BigQuery, Databricks, Redshift, Postgres and DuckDB; dbt and SQLMesh; Airflow, Dagster and Prefect; Looker, Power BI, Tableau, Metabase, Superset, Lightdash, Hex and Streamlit."}}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root{--bg:#0B0F1E;--card:#121831;--line:#24305a;--blue:#3B82F6;--purple:#A78BFA;--text:#e6e8f2;--muted:#a3abc8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--purple)}main{max-width:1040px;margin:0 auto;padding:40px 24px 80px}
+.eyebrow{font:700 14px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:3px;color:var(--muted)}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.05;margin:14px 0 10px;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(20px,2.4vw,26px);font-weight:600;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 26px;font-size:19px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 34px}.btn{padding:13px 22px;border-radius:10px;font-weight:700;text-decoration:none;color:#fff;background:var(--blue)}
+.btn.alt{background:transparent;border:2px solid var(--line);color:var(--text)}
+img{max-width:100%;border-radius:12px;display:block}
+h2{font-size:30px;margin:56px 0 14px}h3{margin:0 0 6px;font-size:19px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+ol li{margin:6px 0}code,pre{font-family:"JetBrains Mono",ui-monospace,monospace}
+pre{background:#060912;border:1px solid var(--line);border-radius:10px;padding:16px;overflow:auto;font-size:14.5px}
+.quote{border-left:4px solid var(--purple);padding:4px 18px;color:var(--text);background:var(--card);border-radius:0 12px 12px 0}
+.stack{color:var(--muted)}details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
+summary{font-weight:700;cursor:pointer}footer{margin-top:60px;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">OPEN-SOURCE · CLAUDE CODE PLUGIN · MIT</div>
+<h1>Data Factory: the open-source AI data team</h1>
+<p class="lead">Your data team is one person. Data Factory gives them a whole team.</p>
+<p class="sub">AI agents for data engineering, analytics, data science and BI — and a quality inspector that checks every number. You just approve.</p>
+<div class="cta">
+  <a class="btn" href="https://github.com/nimrodfisher/data-factory">★ Get it on GitHub</a>
+  <a class="btn alt" href="https://github.com/nimrodfisher/data-factory#start-here">▶ Try it in 5 minutes</a>
+  <a class="btn alt" href="https://github.com/nimrodfisher/data-factory/tree/main/examples/mrr-drop">👀 See a real run</a>
+</div>
+<img src="assets/how-it-works.gif" alt="Animation comparing a one-person data team with Data Factory's AI data team: AI data engineer, AI data analyst, AI data scientist, AI BI engineer and a quality inspector agent" width="1200" height="900">
+
+<h2>What is Data Factory?</h2>
+<p><strong>Data Factory is an open-source AI data team for Claude Code.</strong> It brings the <strong>software factory</strong> model (also called an agentic or "dark" factory) to data work: specialised AI agents build, an independent inspector agent verifies, and a human sets intent and approves. The result: <strong>one data person can run a full data team</strong>, and every number that reaches a stakeholder has been checked against hidden tests and real finance figures.</p>
+
+<h2>Meet the AI data team</h2>
+<div class="grid">
+  <div class="card"><h3>AI data engineer</h3><p>Ingestion, dbt / SQLMesh models, incremental loads, tests and pipelines.</p></div>
+  <div class="card"><h3>AI data analyst</h3><p>"Why did this number change?" investigations with sized drivers and reproducible queries.</p></div>
+  <div class="card"><h3>AI data scientist</h3><p>Forecasts, A/B test readouts, causal impact estimates and ML models with baselines.</p></div>
+  <div class="card"><h3>AI BI engineer</h3><p>Dashboards and semantic layers in Looker, Power BI, Tableau, Metabase and more.</p></div>
+  <div class="card"><h3>Quality inspector</h3><p>Hidden checks, reconciliation to finance, independent re-derivation. PASS, REWORK or BLOCK.</p></div>
+</div>
+
+<h2>How it works, in plain words</h2>
+<ol>
+  <li><strong>You ask</strong> in plain English: <code>/data-factory:run Why did MRR drop in August?</code></li>
+  <li><strong>It writes a spec</strong> that defines every word ("revenue", "active", "last month") → <strong>you approve it</strong>.</li>
+  <li><strong>Four AI specialists build</strong> the tables, the analysis, the forecast and the dashboard.</li>
+  <li><strong>The inspector checks every number</strong> against hidden tests and your finance figures; mistakes go back for rework.</li>
+  <li><strong>You get the answer and the proof</strong>, and you decide what ships. Nothing touches production without you.</li>
+</ol>
+
+<h2>It catches what people miss</h2>
+<p class="quote">In the demo run, every visible check passed on the first build. The inspector's hidden checks still caught <strong>1,132 duplicated invoices</strong> (revenue overstated by 46%) and <strong>3 internal test accounts</strong> that made a revenue drop look 76% bigger. After one rework loop, every number matched finance to the dollar.</p>
+<img src="assets/dashboard.png" alt="MRR dashboard built by the Data Factory AI agents on the demo dataset" loading="lazy">
+
+<h2>What lean data teams use it for</h2>
+<div class="grid">
+  <div class="card"><h3>Metric investigations</h3><p>Real or noise? What drove it? Sized drivers, alternatives ruled out.</p></div>
+  <div class="card"><h3>Weekly KPI review</h3><p>Runs on a schedule and opens a pull request every Monday.</p></div>
+  <div class="card"><h3>Dashboard requests</h3><p>A brief, governed metrics, and every KPI reconciled to the warehouse.</p></div>
+  <div class="card"><h3>New data sources</h3><p>Profiled, staged, tested and scheduled, all delivered as a PR.</p></div>
+  <div class="card"><h3>A/B test readouts</h3><p>SRM check, effect with confidence interval, ship / don't ship.</p></div>
+  <div class="card"><h3>Board forecasts</h3><p>Scenarios with intervals, backtested against naive baselines.</p></div>
+</div>
+
+<h2>Try it in 5 minutes</h2>
+<pre>git clone https://github.com/nimrodfisher/data-factory && cd data-factory/demo
+pip install duckdb pandas numpy && python generate_data.py
+claude
+/plugin install data-factory --marketplace nimrodfisher/data-factory
+/data-factory:run MRR dropped in August. Why?</pre>
+
+<h2>Works with your data stack</h2>
+<p class="stack"><strong>Warehouses:</strong> Snowflake · BigQuery · Databricks · Redshift · Postgres · DuckDB / MotherDuck<br>
+<strong>Transform:</strong> dbt · SQLMesh · plain SQL &nbsp;·&nbsp; <strong>Orchestration:</strong> Airflow · Dagster · Prefect · dbt Cloud · GitHub Actions<br>
+<strong>BI:</strong> Looker · Power BI · Tableau · Metabase · Superset · Lightdash · Hex · Streamlit</p>
+
+<h2>FAQ</h2>
+<details open><summary>What is an AI data factory?</summary><p>A way of running data work like a software factory: specialised AI agents build, an independent agent verifies, and humans only set intent and approve.</p></details>
+<details><summary>Is this related to Azure Data Factory?</summary><p>No. Azure Data Factory is Microsoft's data-integration (ETL) service. Data Factory is an open-source AI agent team for data work that runs on top of the tools you already use.</p></details>
+<details><summary>Can AI agents replace a data team?</summary><p>They can do most of the building. Intent, definitions and accountability stay with a human data lead, and Data Factory makes the agents prove their numbers.</p></details>
+<details><summary>Will it touch production?</summary><p>No. Agents build in dev, a safety hook blocks destructive SQL and production targets, and everything ships as a pull request a human merges.</p></details>
+
+<footer>Built by <a href="https://github.com/nimrodfisher">Nimrod Fisher</a> · <a href="https://ai-analytics-hub.com">AI Analytics Hub</a> · MIT licensed · <a href="https://github.com/nimrodfisher/data-factory">github.com/nimrodfisher/data-factory</a></footer>
+</main></body></html>

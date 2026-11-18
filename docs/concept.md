@@ -1,3 +1,7 @@
+---
+title: "From software factory to AI data factory"
+description: "Why the software factory model needs its own version for data, and how specs, hidden checks and an inspector agent make AI data work trustworthy."
+---
 # From software factory to data factory
 
 ## The software factory, in one paragraph
@@ -46,4 +50,4 @@ request → SPEC → [gate 1] → SEAL → PLAN → BUILD (DE · Analyst · DS �
 ## What stays human
 Intent (which decision matters), definitions (what "revenue" means here), truth anchors (what reality says), and the decision to ship. The factory makes those four things the *only* things you have to do.
 
-See [`levels.md`](levels.md) for the maturity model and [`../examples/mrr-drop`](../examples/mrr-drop) for a full run.
+See [`levels.md`](levels.md) for the maturity model and [`../examples/mrr-drop`](https://github.com/nimrodfisher/data-factory/tree/main/examples/mrr-drop) for a full run.

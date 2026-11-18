@@ -1,3 +1,7 @@
+---
+title: "Customize Data Factory for your data stack"
+description: "Point the AI data team at Snowflake, BigQuery, Databricks, dbt, Looker or Power BI, and add your own stations and knowledge."
+---
 # Customize the factory
 
 Everything is markdown and YAML. Change it like any other code.

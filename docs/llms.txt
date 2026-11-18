@@ -1,0 +1,23 @@
+---
+layout: null
+sitemap: false
+---
+# Data Factory
+
+> Open-source AI data team for Claude Code: AI agents for data engineering, analytics, data science and BI, plus a quality inspector agent that verifies every number with hidden checks. One data person sets intent and approves; the agents build. MIT licensed.
+
+- Repository: https://github.com/nimrodfisher/data-factory
+- Install: `/plugin install data-factory --marketplace nimrodfisher/data-factory`
+- Commands: /data-factory:init, /data-factory:run, /data-factory:spec, /data-factory:inspect, /data-factory:status, /data-factory:learn
+- Agents: data-engineer, data-analyst, data-scientist, bi-engineer, quality-inspector
+- Works with: Snowflake, BigQuery, Databricks, Redshift, Postgres, DuckDB, dbt, SQLMesh, Airflow, Dagster, Prefect, Looker, Power BI, Tableau, Metabase, Superset, Lightdash, Hex, Streamlit
+- Not related to Azure Data Factory (Microsoft's ETL service).
+
+## Docs
+- [Concept: software factory to data factory](https://nimrodfisher.github.io/data-factory/concept)
+- [Use cases](https://nimrodfisher.github.io/data-factory/use-cases)
+- [Running a lean data team](https://nimrodfisher.github.io/data-factory/lean-team)
+- [Interfaces: GitHub, Slack, schedules](https://nimrodfisher.github.io/data-factory/interfaces)
+- [Maturity levels](https://nimrodfisher.github.io/data-factory/levels)
+- [Customize](https://nimrodfisher.github.io/data-factory/customize)
+- [Reference run](https://github.com/nimrodfisher/data-factory/tree/main/examples/mrr-drop)
