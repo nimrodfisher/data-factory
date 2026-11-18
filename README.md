@@ -1,10 +1,13 @@
-<p align="center"><img src="assets/banner.svg" alt="data-factory — one data person, a full AI data team" width="100%"></p>
+<h1 align="center">Data Factory — the open-source AI data team</h1>
+
+<p align="center"><img src="assets/banner.svg" alt="Data Factory: open-source AI agents for data engineering, analytics, data science and BI — a Claude Code plugin" width="100%"></p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-3B82F6" alt="MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-7C3AED" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/warehouses-Snowflake%20·%20BigQuery%20·%20Databricks%20·%20Postgres%20·%20Redshift%20·%20DuckDB-0B0F1E" alt="warehouses">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-3B82F6" alt="PRs welcome"></a>
+  <a href="https://nimrodfisher.github.io/data-factory/"><img src="https://img.shields.io/badge/website-data--factory-A78BFA" alt="Website"></a>
 </p>
 
 <h2 align="center">Your data team is one person.<br>Data Factory gives them a whole team.</h2>
@@ -14,13 +17,19 @@
   A <b>quality inspector</b> checks every number. <b>You just approve.</b>
 </p>
 
-<p align="center"><img src="assets/how-it-works.gif" alt="A data team of one today vs. with Data Factory" width="100%"></p>
+<p align="center"><img src="assets/how-it-works.gif" alt="Animation: a one-person data team today vs. an AI data team with Data Factory — AI data engineer, AI data analyst, AI data scientist, AI BI engineer and a quality inspector agent" width="100%"></p>
 
 <p align="center">
   <a href="#start-here"><b>▶ Try it in 5 minutes</b></a> &nbsp;·&nbsp;
   <a href="examples/mrr-drop"><b>👀 See a real run</b></a> &nbsp;·&nbsp;
   <a href="docs/use-cases.md"><b>💡 What can I ask it?</b></a>
 </p>
+
+## What is Data Factory?
+
+**Data Factory is an open-source AI data team.** It's a [Claude Code](https://code.claude.com) plugin with **AI agents for data engineering, analytics, data science and BI**: an AI data engineer, an AI data analyst, an AI data scientist and an AI BI engineer, plus a **quality inspector agent** that verifies every number before it reaches you.
+
+It applies the **software factory** model (also called an *agentic* or *dark* factory) to data work, so **one data person can run a full data team**: you write the intent and approve; the agents build pipelines, dbt models, analyses, forecasts and dashboards; the inspector checks them against hidden tests and your real finance numbers. It works with **dbt, SQLMesh, Snowflake, BigQuery, Databricks, Redshift, Postgres and DuckDB**, and with **Looker, Power BI, Tableau, Metabase, Superset and Lightdash**.
 
 ## How it works, in plain words
 
@@ -36,7 +45,7 @@ It's the **software factory** idea that engineering teams adopted in 2026 (agent
 
 > In the [reference run](examples/mrr-drop), every visible check passed on the first build. The inspector's **hidden checks** still caught **1,132 duplicated invoices** (revenue overstated by 46%) and **3 internal test accounts** that made the August drop look 76% bigger and blamed the wrong customers. One rework loop later, every number matched finance — to the dollar.
 
-<p align="center"><img src="assets/dashboard.png" alt="Dashboard produced by the reference run" width="90%"></p>
+<p align="center"><img src="assets/dashboard.png" alt="MRR dashboard built by the Data Factory AI agents on the demo dataset" width="90%"></p>
 
 ---
 
@@ -93,7 +102,7 @@ Six of these are **ready-made specs** that `init` installs into `.data-factory/s
 
 ---
 
-## How it works
+## Under the hood
 
 ```mermaid
 flowchart LR
@@ -203,6 +212,14 @@ docs/              use-cases · interfaces · lean-team · concept · levels · 
 Skills load in three layers (lean entry → router → one deep reference), so each agent pulls only the knowledge its task needs.
 
 ## FAQ
+
+**What is an AI data factory?** A way of running data work like a software factory: specialised AI agents build, an independent agent verifies, and humans only set intent and approve. Data Factory is an open-source implementation for data teams. See [docs/concept.md](docs/concept.md).
+
+**Is this related to Azure Data Factory?** No. Azure Data Factory is Microsoft's data-integration (ETL) service. This project is an open-source **AI agent team** for data work, and it runs on top of whatever warehouse and pipeline tools you already use.
+
+**Can AI agents replace a data team?** They can do most of the building: SQL, dbt models, analyses, forecasts and dashboards. What they can't own is intent, definitions and accountability. Data Factory keeps those with a human data lead and makes the agents prove their numbers.
+
+**Is it an AI data analyst?** It includes one, plus an engineer, a data scientist, a BI engineer and an inspector. A single AI analyst writes queries; a factory also checks whether the answer is right.
 
 **How small can the data team be?** One person. The factory covers the four builder crafts; you cover intent, definitions, truths and approvals — about 3 hours a week of "factory management" once it's set up ([lean-team guide](docs/lean-team.md)).
 
